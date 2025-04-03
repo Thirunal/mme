@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; box-sizing: border-box; }
+        @keyframes fadeInSlide {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.top-bar {
+    background: linear-gradient(90deg, #ffffff, #ffffff);
+    text-align: center;
+    padding: 8px 0;
+    font-size: 15px;
+    color: rgb(0, 0, 0);
+
+    width: 100%;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    animation: fadeInSlide 1s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.top-bar span {
+    display: inline-block;
+    animation: scrollText 10s linear infinite;
+    white-space: nowrap;
+}
+
+@keyframes scrollText {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+        .navbar { display: flex; align-items: center; justify-content: space-between; background: #007BFF; padding: 15px 10%; flex-wrap: wrap; }
+        .navbar img { height: 40px; margin-right: 10px; }
+        .navbar .logo-container { display: flex; align-items: center; }
+        .company-name { font-size: 22px; color: white; font-weight: bold; text-align: center; flex-grow: 1; }
+        
+        .container { width: 90%; margin: auto; display: flex; flex-wrap: wrap; gap: 20px; padding: 20px 0; }
+        .left-section, .right-section { flex: 1; }
+        .left-section { text-align: center; }
+        .main-image { width: 100%; max-height: 300px; object-fit: cover; border-radius: 5px; }
+        .thumbnails { display: flex; justify-content: center; gap: 5px; margin-top: 10px; flex-wrap: wrap; }
+        .thumbnails img { width: 50px; height: 50px; object-fit: cover; cursor: pointer; border: 2px solid gray; border-radius: 5px; }
+        .thumbnails img.active { border-color: blue; }
+        
+        .product-info h1 { margin: 10px 0; font-size: 22px; }
+        .product-info h2 { color: green; font-size: 18px; }
+        .details-section { margin-top: 15px; }
+        .details-section h3 { background: #ddd; padding: 8px; margin: 10px 0; font-size: 16px; }
+        
+        .footer { background: #000; color: white; text-align: center; padding: 15px; font-size: 14px; font-weight: bold; width: 100%; margin-top: 30px; }
+        
+        .action-buttons { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+        .action-buttons a { flex: 1; text-align: center; padding: 12px; font-size: 16px; font-weight: bold; color: white; text-decoration: none; border-radius: 5px; }
+        .call-btn { background-color: green; }
+        .whatsapp-btn { background-color: #25D366; }
+        
+        @media (max-width: 768px) {
+            .container { flex-direction: column; align-items: center; }
+            .left-section, .right-section { width: 100%; }
+            .action-buttons { flex-direction: column; }
+            .action-buttons a { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <span>📧 Email: me.ezhil@gmail.com | 📞 Mobile: +91 9894093585</span>
+    </div>
+
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="logo.png" alt="Logo">
+        </div>
+        <span class="company-name">Madurai Meenakshi Electronics</span>
+    </nav>
+
+    <div class="container">
+        <div class="left-section">
+            <img id="product-image" class="main-image" src="" alt="Product Image">
+            <div class="thumbnails" id="thumbnail-container"></div>
+        </div>
+        <div class="right-section">
+            <div class="product-info">
+                <h1 id="product-name"></h1>
+                <h2 id="product-price"></h2>
+                <p id="product-model"></p>
+                <p id="product-basic-details"></p>
+            </div>
+            <div class="details-section">
+                <h3>Product Details</h3>
+                <p id="product-details"></p>
+                <h3>Product Description</h3>
+                <p id="product-description"></p>
+            </div>
+            <div class="action-buttons">
+                <a id="call-button" class="call-btn" href="#">📞 Call Now</a>
+                <a id="whatsapp-button" class="whatsapp-btn" href="#">💬 WhatsApp Now</a>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <script>
+        let productImages = [];
+
+        function updateMainImage(index) {
+            document.getElementById('product-image').src = productImages[index];
+            document.querySelectorAll('.thumbnails img').forEach((img, i) => {
+                img.classList.toggle('active', i === index);
+            });
+        }
+
+        function getProductDetails() {
+            let params = new URLSearchParams(window.location.search);
+            let productId = params.get('id');
+
+            const productsData = [
+            {
+    "id": 1,
+    "name": "NODE IC NXP (BGY 812)",
+    "price": "₹150",
+    "model": "IC NXP (BGY 812)",
+    "details": "*Item Code: R3-3C-",
+    "description": "Usage/ApplicationCATV HYBRID AND NODE ICPower5WFrequency40MHz to 860MHzOptical Input+2dBm ~ -12dBmFrequency Range40-860MHzNetworkCATVColorGREENCooling TypeselfOptical Wavelength1200nm - 1600nmVoltage3.5V DCOptical ConnectorSC-APCPackaging16pcsCurrent160mAmp.BrandKEJIANC And NNRF Output Level115dbMax output level115dbUsage ApplicationCATVBandwidth40-850 MHzDC NodeBATTERY DC NODEOutput Level115dbModel NumberKB827BOH-3.5Model NoKB827BOH-3.5Product CodeKB827BOH-3.5Wave Length1200nm - 1600nmMinimum Order Quantity16 Piece.",
+    "images": ["1.webp", "2.webp","1.webp", "2.webp","1.webp"]
+},
+{
+    "id": 2,
+    "name": "NODE IC NXP (BGY 812)",
+    "price": "₹150",
+    "model": "IC NXP (BGY 812)",
+    "details": "*Item Code: R3-3C-",
+    "description": "Usage/ApplicationCATV HYBRID AND NODE ICPower5WFrequency40MHz to 860MHzOptical Input+2dBm ~ -12dBmFrequency Range40-860MHzNetworkCATVColorGREENCooling TypeselfOptical Wavelength1200nm - 1600nmVoltage3.5V DCOptical ConnectorSC-APCPackaging16pcsCurrent160mAmp.BrandKEJIANC And NNRF Output Level115dbMax output level115dbUsage ApplicationCATVBandwidth40-850 MHzDC NodeBATTERY DC NODEOutput Level115dbModel NumberKB827BOH-3.5Model NoKB827BOH-3.5Product CodeKB827BOH-3.5Wave Length1200nm - 1600nmMinimum Order Quantity16 Piece.",
+    "images": ["1.webp", "2.webp","1.webp", "2.webp","1.webp"]
+},
+{
+    "id": 3,
+    "name": "NODE IC NXP (BGY 812)",
+    "price": "₹150",
+    "model": "IC NXP (BGY 812)",
+    "details": "*Item Code: R3-3C-",
+    "description": "Usage/ApplicationCATV HYBRID AND NODE ICPower5WFrequency40MHz to 860MHzOptical Input+2dBm ~ -12dBmFrequency Range40-860MHzNetworkCATVColorGREENCooling TypeselfOptical Wavelength1200nm - 1600nmVoltage3.5V DCOptical ConnectorSC-APCPackaging16pcsCurrent160mAmp.BrandKEJIANC And NNRF Output Level115dbMax output level115dbUsage ApplicationCATVBandwidth40-850 MHzDC NodeBATTERY DC NODEOutput Level115dbModel NumberKB827BOH-3.5Model NoKB827BOH-3.5Product CodeKB827BOH-3.5Wave Length1200nm - 1600nmMinimum Order Quantity16 Piece.",
+    "images": ["1.webp", "2.webp","1.webp", "2.webp","1.webp"]
+},
+{
+    "id": 4,
+    "name": "NODE IC NXP (BGY 812)",
+    "price": "₹150",
+    "model": "IC NXP (BGY 812)",
+    "details": "*Item Code: R3-3C-",
+    "description": "Usage/ApplicationCATV HYBRID AND NODE ICPower5WFrequency40MHz to 860MHzOptical Input+2dBm ~ -12dBmFrequency Range40-860MHzNetworkCATVColorGREENCooling TypeselfOptical Wavelength1200nm - 1600nmVoltage3.5V DCOptical ConnectorSC-APCPackaging16pcsCurrent160mAmp.BrandKEJIANC And NNRF Output Level115dbMax output level115dbUsage ApplicationCATVBandwidth40-850 MHzDC NodeBATTERY DC NODEOutput Level115dbModel NumberKB827BOH-3.5Model NoKB827BOH-3.5Product CodeKB827BOH-3.5Wave Length1200nm - 1600nmMinimum Order Quantity16 Piece.",
+    "images": ["1.webp", "2.webp","1.webp", "2.webp","1.webp"]
+},
+{
+    "id": 5,
+    "name": "NODE IC NXP (BGY 812)",
+    "price": "₹150",
+    "model": "IC NXP (BGY 812)",
+    "details": "*Item Code: R3-3C-",
+    "description": "Usage/ApplicationCATV HYBRID AND NODE ICPower5WFrequency40MHz to 860MHzOptical Input+2dBm ~ -12dBmFrequency Range40-860MHzNetworkCATVColorGREENCooling TypeselfOptical Wavelength1200nm - 1600nmVoltage3.5V DCOptical ConnectorSC-APCPackaging16pcsCurrent160mAmp.BrandKEJIANC And NNRF Output Level115dbMax output level115dbUsage ApplicationCATVBandwidth40-850 MHzDC NodeBATTERY DC NODEOutput Level115dbModel NumberKB827BOH-3.5Model NoKB827BOH-3.5Product CodeKB827BOH-3.5Wave Length1200nm - 1600nmMinimum Order Quantity16 Piece.",
+    "images": ["1.webp", "2.webp","1.webp", "2.webp","1.webp"]
+},
+{
+    "id": 6,
+    "name": "NODE IC NXP (BGY 812)",
+    "price": "₹150",
+    "model": "IC NXP (BGY 812)",
+    "details": "*Item Code: R3-3C-",
+    "description": "Usage/ApplicationCATV HYBRID AND NODE ICPower5WFrequency40MHz to 860MHzOptical Input+2dBm ~ -12dBmFrequency Range40-860MHzNetworkCATVColorGREENCooling TypeselfOptical Wavelength1200nm - 1600nmVoltage3.5V DCOptical ConnectorSC-APCPackaging16pcsCurrent160mAmp.BrandKEJIANC And NNRF Output Level115dbMax output level115dbUsage ApplicationCATVBandwidth40-850 MHzDC NodeBATTERY DC NODEOutput Level115dbModel NumberKB827BOH-3.5Model NoKB827BOH-3.5Product CodeKB827BOH-3.5Wave Length1200nm - 1600nmMinimum Order Quantity16 Piece.",
+    "images": ["1.webp", "2.webp","1.webp", "2.webp","1.webp"]
+},
+{
+    "id": 7,
+    "name": "NODE IC NXP (BGY 812)",
+    "price": "₹150",
+    "model": "IC NXP (BGY 812)",
+    "details": "*Item Code: R3-3C-",
+    "description": "Usage/ApplicationCATV HYBRID AND NODE ICPower5WFrequency40MHz to 860MHzOptical Input+2dBm ~ -12dBmFrequency Range40-860MHzNetworkCATVColorGREENCooling TypeselfOptical Wavelength1200nm - 1600nmVoltage3.5V DCOptical ConnectorSC-APCPackaging16pcsCurrent160mAmp.BrandKEJIANC And NNRF Output Level115dbMax output level115dbUsage ApplicationCATVBandwidth40-850 MHzDC NodeBATTERY DC NODEOutput Level115dbModel NumberKB827BOH-3.5Model NoKB827BOH-3.5Product CodeKB827BOH-3.5Wave Length1200nm - 1600nmMinimum Order Quantity16 Piece.",
+    "images": ["1.webp", "2.webp","1.webp", "2.webp","1.webp"]
+},       {
+    "id": 8,
+    "name": "NODE IC NXP (BGY 812)",
+    "price": "₹150",
+    "model": "IC NXP (BGY 812)",
+    "details": "*Item Code: R3-3C-",
+    "description": "Usage/ApplicationCATV HYBRID AND NODE ICPower5WFrequency40MHz to 860MHzOptical Input+2dBm ~ -12dBmFrequency Range40-860MHzNetworkCATVColorGREENCooling TypeselfOptical Wavelength1200nm - 1600nmVoltage3.5V DCOptical ConnectorSC-APCPackaging16pcsCurrent160mAmp.BrandKEJIANC And NNRF Output Level115dbMax output level115dbUsage ApplicationCATVBandwidth40-850 MHzDC NodeBATTERY DC NODEOutput Level115dbModel NumberKB827BOH-3.5Model NoKB827BOH-3.5Product CodeKB827BOH-3.5Wave Length1200nm - 1600nmMinimum Order Quantity16 Piece.",
+    "images": ["1.webp", "2.webp","1.webp", "2.webp","1.webp"]
+},
+
+
+            ];
+
+            let product = productsData.find(p => p.id == productId);
+            if (product) {
+                document.getElementById('product-name').innerText = product.name;
+                document.getElementById('product-price').innerText = product.price;
+                document.getElementById('product-model').innerText = "Model: " + product.model;
+                document.getElementById('product-details').innerText = product.details;
+                document.getElementById('product-description').innerText = product.description;
+                productImages = product.images;
+                updateMainImage(0);
+                let thumbnailsContainer = document.getElementById('thumbnail-container');
+                thumbnailsContainer.innerHTML = '';
+                productImages.forEach((img, index) => {
+                    let thumb = document.createElement('img');
+                    thumb.src = img;
+                    thumb.onclick = () => updateMainImage(index);
+                    thumbnailsContainer.appendChild(thumb);
+                });
+                document.getElementById('call-button').href = "tel:+919894093585";
+                let whatsappMessage = encodeURIComponent(`Hello, I'm interested in this product: ${product.name}`);
+                document.getElementById('whatsapp-button').href = `https://wa.me/919894093585?text=${whatsappMessage}`;
+            }
+        }
+        getProductDetails();
+    </script>
+</body>
+</html>
