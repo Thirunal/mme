@@ -5,7 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Product Details</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
 
     @keyframes fadeInSlide {
       0% { opacity: 0; transform: translateY(-20px); }
@@ -41,13 +50,14 @@
       align-items: center;
       justify-content: space-between;
       background: #007BFF;
-      padding: 15px 10%;
+      padding: 15px 5%;
       flex-wrap: wrap;
     }
 
-    .navbar img { height: 40px; margin-right: 10px; }
-
-    .navbar .logo-container { display: flex; align-items: center; }
+    .navbar img {
+      height: 40px;
+      margin-right: 10px;
+    }
 
     .company-name {
       font-size: 22px;
@@ -58,21 +68,29 @@
     }
 
     .container {
-      width: 90%;
+      width: 100%;
+      max-width: 1200px;
       margin: auto;
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
-      padding: 20px 0;
+      padding: 20px 10px;
+      overflow-x: hidden;
     }
 
-    .left-section, .right-section { flex: 1; }
+    .left-section, .right-section {
+      flex: 1;
+      min-width: 300px;
+    }
 
-    .left-section { text-align: center; }
+    .left-section {
+      text-align: center;
+    }
 
     .main-image {
       width: 100%;
-      max-height: 300px;
+      max-width: 100%;
+      height: auto;
       object-fit: cover;
       border-radius: 5px;
     }
@@ -83,6 +101,8 @@
       gap: 5px;
       margin-top: 10px;
       flex-wrap: wrap;
+      max-width: 100%;
+      overflow-x: auto;
     }
 
     .thumbnails img {
@@ -92,15 +112,26 @@
       cursor: pointer;
       border: 2px solid gray;
       border-radius: 5px;
+      flex-shrink: 0;
     }
 
-    .thumbnails img.active { border-color: blue; }
+    .thumbnails img.active {
+      border-color: blue;
+    }
 
-    .product-info h1 { margin: 10px 0; font-size: 22px; }
+    .product-info h1 {
+      margin: 10px 0;
+      font-size: 22px;
+    }
 
-    .product-info h2 { color: green; font-size: 18px; }
+    .product-info h2 {
+      color: green;
+      font-size: 18px;
+    }
 
-    .details-section { margin-top: 15px; }
+    .details-section {
+      margin-top: 15px;
+    }
 
     .details-section h3 {
       background: #ddd;
@@ -138,15 +169,29 @@
       border-radius: 5px;
     }
 
-    .call-btn { background-color: green; }
+    .call-btn {
+      background-color: green;
+    }
 
-    .whatsapp-btn { background-color: #25D366; }
+    .whatsapp-btn {
+      background-color: #25D366;
+    }
 
     @media (max-width: 768px) {
-      .container { flex-direction: column; align-items: center; }
-      .left-section, .right-section { width: 100%; }
-      .action-buttons { flex-direction: column; }
-      .action-buttons a { width: 100%; }
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .left-section, .right-section {
+        width: 100%;
+      }
+      .action-buttons {
+        flex-direction: column;
+        width: 100%;
+      }
+      .action-buttons a {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -157,9 +202,7 @@
   </div>
 
   <nav class="navbar">
-    <div class="logo-container">
-      <img src="logo.png" alt="Logo" />
-    </div>
+    <img src="logo.png" alt="Logo">
     <span class="company-name">Madurai Meenakshi Electronics</span>
   </nav>
 
@@ -196,10 +239,10 @@
         price: "₹150",
         model: "IC NXP (BGY 812)",
         details: "*Item Code: R3-3C-",
-        description: "Usage/Application CATV HYBRID AND NODE IC...",
+        description: "Usage/Application CATV HYBRID AND NODE ICA paragraph is a series of sentences that are organized and coherent, and are all related to a single topic. Almost every piece of writing you do that is longer than a few sentences should be organized into paragraphs. This is because paragraphs show a reader where the subdivisions of an essay begin and end, and thus help the reader see the organization of the essay and grasp its main points....",
         images: ["1.webp", "2.webp", "1.webp", "2.webp", "1.webp"]
       },
-      // You can add more product objects with different IDs here
+      // Add more product objects here if needed
     ];
 
     function updateMainImage(index) {
@@ -239,8 +282,6 @@
       document.getElementById('product-name').textContent = "Product not found.";
     }
   </script>
-
-  <div class="footer">© 2025 Madurai Meenakshi Electronics - All Rights Reserved</div>
 
 </body>
 </html>
